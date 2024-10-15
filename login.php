@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        /* Style umum */
         * {
             margin: 0;
             padding: 0;
@@ -49,7 +50,7 @@
             position: relative;
         }
 
-        .input-group input, .select-box {
+        .input-group input {
             width: 100%;
             padding: 10px 15px;
             border: 1px solid #ccc;
@@ -58,7 +59,7 @@
             transition: border-color 0.3s;
         }
 
-        .input-group input:focus, .select-box.active {
+        .input-group input:focus {
             border-color: #4CAF50;
             outline: none;
         }
@@ -99,7 +100,7 @@
             transform: translateY(-2px);
         }
 
-        /* Select box styling */
+        /* Dropdown styling */
         .custom-select {
             position: relative;
             margin-bottom: 20px;
@@ -110,6 +111,9 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px 15px;
         }
 
         .select-box .selected {
@@ -122,10 +126,6 @@
             display: inline-block;
             padding: 4px;
             transform: rotate(45deg);
-        }
-
-        .select-box.active .arrow {
-            transform: rotate(-135deg);
         }
 
         .options {
@@ -186,6 +186,7 @@
                     <li data-value="murid">Murid</li>
                 </ul>
             </div>
+            <input type="hidden" name="role" id="role" required> <!-- Menyimpan nilai role -->
         </div>
 
         <input type="submit" class="btn" value="Sign Up" name="signUp">
@@ -197,6 +198,7 @@
         const selectBox = document.getElementById('selectBox');
         const optionsList = document.getElementById('optionsList');
         const selected = selectBox.querySelector('.selected');
+        const roleInput = document.getElementById('role'); // Input tersembunyi untuk menyimpan nilai role
 
         selectBox.addEventListener('click', function () {
             this.classList.toggle('active');
@@ -211,6 +213,7 @@
         optionsList.addEventListener('click', function (e) {
             if (e.target.tagName === 'LI') {
                 selected.textContent = e.target.textContent;
+                roleInput.value = e.target.getAttribute('data-value'); // Menyimpan nilai role ke input tersembunyi
                 selectBox.classList.remove('active');
             }
         });
