@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2024 at 06:15 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Oct 17, 2024 at 09:42 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
@@ -53,14 +53,18 @@ CREATE TABLE `tb_guru` (
   `alamat` varchar(128) NOT NULL,
   `telpon` varchar(20) NOT NULL,
   `agama` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_guru`
 --
 
 INSERT INTO `tb_guru` (`id_guru`, `nip`, `nama`, `alamat`, `telpon`, `agama`) VALUES
-(1, '222', 'aufa', 'Desa Pelutan', '0789678', 'islam');
+(1, '222', 'aufa', 'Desa Pelutan', '0789678', 'islam'),
+(2, '8098', 'harlan', 'bojongnangka', '087646', 'Islam'),
+(3, '8781', 'Sabila', 'Gondang', '0846327', 'Islam'),
+(4, '8781', 'Sabila', 'Gondang', '0846327', 'Islam'),
+(5, '7897', 'joko', 'pelutan', '087646864', 'Islam');
 
 -- --------------------------------------------------------
 
@@ -73,7 +77,7 @@ CREATE TABLE `tb_nilai_ujian` (
   `no_ujian` char(10) NOT NULL,
   `pelajaran` varchar(100) NOT NULL,
   `nilai_ujian` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -86,7 +90,7 @@ CREATE TABLE `tb_pelajaran` (
   `pelajaran` varchar(50) NOT NULL,
   `jurusan` varchar(50) NOT NULL,
   `guru` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -100,13 +104,15 @@ CREATE TABLE `tb_siswa` (
   `alamat` varchar(256) NOT NULL,
   `kelas` varchar(6) NOT NULL,
   `jurusan` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_siswa`
 --
 
 INSERT INTO `tb_siswa` (`nisn`, `nama`, `alamat`, `kelas`, `jurusan`) VALUES
+('677687', 'tesr75', 'gj', 'XI', 'Bahasa'),
+('782727', 'ilham', 'pelutan', 'XI', 'Bahasa'),
 ('96878', 'aufaa', 'Desa Gondang', 'XI ', 'PPLG');
 
 -- --------------------------------------------------------
@@ -124,7 +130,7 @@ CREATE TABLE `tb_ujian` (
   `nilai_tertinggi` int(11) NOT NULL,
   `nilai_rata2` int(11) NOT NULL,
   `hasil_ujian` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -180,7 +186,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_nilai_ujian`
