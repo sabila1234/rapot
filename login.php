@@ -12,7 +12,7 @@
     </head>
     <body class="bg-primary">
 
-    <form id="loginForm">
+    <form id="loginForm" action="HalUt.php" method="POST" >
         <label for="type">Login sebagai:</label>
         <select name="role" id="type">
             <option value="admin">Admin</option>
@@ -35,7 +35,7 @@
             <input type="text" name="nama" placeholder="Nama" required>
         </div>
         
-        <button class="button" type="submit">Login</button>
+        <button class="button" name="login" type="submit">Login</button>
        
     </form>
 
@@ -94,3 +94,11 @@
         
     </body>
 </html>
+<?php
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    echo $password;
+}
+
+?>

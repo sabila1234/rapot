@@ -19,7 +19,7 @@ $query = ""
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.php">Start Bootstrap</a>
+            <a class="navbar-brand ps-3" href="index.php">Dashboard Admin</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -53,21 +53,21 @@ $query = ""
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i>data</div>
-                            <a class="nav-link" href="dasboard.php">
+                            <a class="nav-link" href="tambahGuru.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data guru
                             </a>
-                            <a class="nav-link" href="dasboard.php">
+                            <a class="nav-link" href="tambahMurid.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data siswa
                             </a>
-                            <a class="nav-link" href="dasboard.php">
+                            <a class="nav-link" href="dataguru.php">
                                 <div class="sb-nav-link-icon"></div> 
-                                Jumlah guru
+                                Data guru
                             </a>
-                            <a class="nav-link" href="dasboard.php">
+                            <a class="nav-link" href="dataMurid.php">
                                 <div class="sb-nav-link-icon"></div>
-                                Jumlah siswa
+                                Data siswa
                             </a>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ $query = ""
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Data Guru</div>
+                                    <div class="card-body">Jumlah Guru</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="#">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -96,7 +96,7 @@ $query = ""
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Data Siswa</div>
+                                    <div class="card-body">Jumlah Siswa</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <p class="small text-white stretched-link" href="#">View Details</p>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

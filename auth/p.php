@@ -23,7 +23,7 @@ include "../koneksi.php";
                     <div class="card-header text-center">
                         Masuk ke Akun Anda
                     </div>
-                    <form action="#" method="post">
+                    <form action="login.php" method="post">
 
                         <div class="card-body">
                             <form id="loginForm">
