@@ -57,7 +57,7 @@
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data user
                             </a>
-                            <a class="nav-link" href="dasboard.php">
+                            <a class="nav-link" href="tables.php">
                                 <div class="sb-nav-link-icon"></div> 
                                 data guru
                             </a>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <?= 'admin' ?>
                     </div>
                 </nav>
             </div>
