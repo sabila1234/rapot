@@ -77,7 +77,7 @@
 </div>
 
 <footer>
-    <p>© 2024 Sekolah XYZ. All rights reserved.</p>
+    <p>© <?= date ('Y') ?> Sekolah XYZ. All rights reserved.</p>
 </footer>
 
 <script src="js/datarapot.js" defer></script>
