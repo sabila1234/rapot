@@ -16,7 +16,7 @@
             <tr>
                 <th>NISN</th>
                 <td colspan="3">
-                    <input type="text" id="nisn" oninput="fetchStudentData()" placeholder="Masukkan NISN" required>
+                    <input type="text" id="nisn" placeholder="Masukkan NISN" required>
                 </td>
             </tr>
             <tr>

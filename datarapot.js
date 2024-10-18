@@ -1,19 +1,18 @@
-// Dummy data for student information
-const students = {
-    '1234567890': { nama: 'Budi Santoso', kelas: '12A', jurusan: 'IPA' },
-    '0987654321': { nama: 'Siti Aminah', kelas: '11B', jurusan: 'IPS' },
-    '1122334455': { nama: 'Andi Wijaya', kelas: '10C', jurusan: 'Bahasa' }
-};
-
-// Fetch and populate student data by NISN
-function fetchStudentData() {
+// Fungsi untuk mengambil data siswa dari server berdasarkan NISN
+async function fetchStudentData() {
     const nisn = document.getElementById('nisn').value;
-    const studentInfo = students[nisn];
-
-    if (studentInfo) {
-        document.getElementById('nama').value = studentInfo.nama;
-        document.getElementById('kelas').value = studentInfo.kelas;
-        document.getElementById('jurusan').value = studentInfo.jurusan;
+    if (nisn) {
+        const response = await fetch(`http://localhost:5000/api/students/${nisn}`);
+        if (response.ok) {
+            const student = await response.json();
+            document.getElementById('nama').value = student.nama;
+            document.getElementById('kelas').value = student.kelas;
+            document.getElementById('jurusan').value = student.jurusan;
+        } else {
+            document.getElementById('nama').value = '';
+            document.getElementById('kelas').value = '';
+            document.getElementById('jurusan').value = '';
+        }
     } else {
         document.getElementById('nama').value = '';
         document.getElementById('kelas').value = '';
@@ -21,8 +20,8 @@ function fetchStudentData() {
     }
 }
 
-// Add new Mata Pelajaran form group
-document.getElementById('addMapelBtn').addEventListener('click', function () {
+// Fungsi untuk menambahkan grup Mata Pelajaran
+function addMataPelajaran() {
     const container = document.getElementById('mataPelajaranContainer');
     
     const newGroup = document.createElement('div');
@@ -52,12 +51,10 @@ document.getElementById('addMapelBtn').addEventListener('click', function () {
     `;
     
     container.appendChild(newGroup);
-});
+}
 
-// Prevent default form submission for demonstration
-document.getElementById('nilaiForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    
+// Fungsi untuk menghitung rata-rata nilai
+function calculateAverage() {
     const nilaiKompetensiInputs = document.querySelectorAll('.nilaiKompetensi');
     const nilaiKeterampilanInputs = document.querySelectorAll('.nilaiKeterampilan');
     
@@ -87,4 +84,16 @@ document.getElementById('nilaiForm').addEventListener('submit', function (e) {
         <strong>Rata-rata Nilai Keterampilan:</strong> ${averageNilaiKeterampilan.toFixed(2)} <br>
         <strong>Rata-rata KKM:</strong> ${averageKKM.toFixed(2)}
     `;
+}
+
+// Event listener untuk tombol "Tambah Mata Pelajaran"
+document.getElementById('addMapelBtn').addEventListener('click', addMataPelajaran);
+
+// Event listener untuk form submission
+document.getElementById('nilaiForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    calculateAverage();
 });
+
+// Event listener untuk input NISN
+document.getElementById('nisn').addEventListener('input', fetchStudentData);
