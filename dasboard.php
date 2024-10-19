@@ -47,7 +47,7 @@
                                 <div class="sb-nav-link-icon"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i>data</div>
+                            <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i> Data</div>
                             <a class="nav-link" href="dataguru.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data guru

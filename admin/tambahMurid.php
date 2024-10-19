@@ -53,6 +53,7 @@ include "../koneksi.php";
             </div>
         </div>
     </footer>
+    
 </body>
 </html>
 <?php
@@ -83,6 +84,7 @@ Toast.fire({
   icon: 'success',
   title: 'Berhasil Menambahkan Data'
 }); </script>";
+// echo "<script>window.location.href : dashboard.php</script>";
     } else {
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo "<script> const Toast = Swal.mixin({
@@ -100,6 +102,7 @@ Toast.fire({
   icon: 'error',
   title: 'Gagal Menambahkan Data'
 }); </script>";
+
     };
     
 }
