@@ -55,14 +55,14 @@ $hitung = mysqli_num_rows($ambil);
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i>data</div>
-                            <a class="nav-link" href="tambahGuru.php">
+                            <!-- <a class="nav-link" href="tambahGuru.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data guru
                             </a>
                             <a class="nav-link" href="tambahMurid.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data murid
-                            </a>
+                            </a> -->
                             <a class="nav-link" href="dataguru.php">
                                 <div class="sb-nav-link-icon"></div> 
                                 data guru
@@ -133,7 +133,7 @@ $hitung = mysqli_num_rows($ambil);
                                             <td><?php echo $data['jurusan']; ?></td>
                                             <td>
                                             <button class="edit-btn">Edit</button>
-                                            <button class="delete-btn">Delete</button>
+                                            <a class="btn btn-danger" href="function/hapus-siswa.php?id=<?php echo $data['nisn']; ?>">Delete</a>
                                             </td>
                                         </tr>
                                         <?php

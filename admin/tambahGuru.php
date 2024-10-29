@@ -15,7 +15,7 @@ include "../koneksi.php";
         <h2>Form Pengisian Data Guru</h2>
         <form id="guruForm" method="post">
             <label for="nip">NIP:</label>
-            <input type="text" id="nip" name="nip" required placeholder="Masukkan NIP">
+            <input type="number" inputmode="numeric" id="nip" name="nip" required placeholder="Masukkan NIP">
 
             <label for="nama">Nama:</label>
             <input type="text" id="nama" name="nama" required placeholder="Masukkan Nama">
@@ -35,7 +35,7 @@ include "../koneksi.php";
             </select>
 
             <label for="telpon">Telepon:</label>
-            <input type="tel" id="telpon" name="telpon" required placeholder="Masukkan Nomor Telepon">
+            <input type="number" inputmode="numeric" id="telpon" name="telpon" required placeholder="Masukkan Nomor Telepon">
 
             <button type="submit" name="tambah">Tambah</button>
         </form>
@@ -66,22 +66,28 @@ if (isset($_POST['tambah'])) {
     $ambil = $koneksi->query($query);
 
     if ($ambil) {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo "<script> const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.onmouseenter = Swal.stopTimer;
-    toast.onmouseleave = Swal.resumeTimer;
-  }
-});
-Toast.fire({
-  icon: 'success',
-  title: 'Berhasil Menambahkan Data'
-}); </script>";
+      echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+      echo "<script>
+          const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+              }
+          });
+          
+          Toast.fire({
+              icon: 'success',
+              title: 'Berhasil Menambahkan Data'
+          }).then(() => {
+              // Setelah animasi selesai, arahkan ke halaman lain
+              window.location.href = 'dataguru.php';
+          });
+      </script>";
 } else {
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo "<script> const Toast = Swal.mixin({

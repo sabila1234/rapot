@@ -15,7 +15,7 @@ include "../koneksi.php";
         <h2>Form Pengisian Data Murid</h2>
         <form id="muridForm" method="post">
             <label for="nisn">NISN:</label>
-            <input type="text" id="nisn" name="nisn" required placeholder="Masukkan NISN">
+            <input type="number" inputmode="numeric" id="nisn" name="nisn" required placeholder="Masukkan NISN">
 
             <label for="nama">Nama:</label>
             <input type="text" id="nama" name="nama" required placeholder="Masukkan Nama">
@@ -69,21 +69,27 @@ if (isset($_POST['tambah'])) {
 
     if ($ambil) {
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo "<script> const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.onmouseenter = Swal.stopTimer;
-    toast.onmouseleave = Swal.resumeTimer;
-  }
-});
-Toast.fire({
-  icon: 'success',
-  title: 'Berhasil Menambahkan Data'
-}); </script>";
+        echo "<script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Menambahkan Data'
+            }).then(() => {
+                // Setelah animasi selesai, arahkan ke halaman lain
+                window.location.href = 'dataMurid.php';
+            });
+        </script>";
 // echo "<script>window.location.href : dashboard.php</script>";
     } else {
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";

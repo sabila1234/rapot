@@ -53,14 +53,14 @@ $query = ""
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i>data</div>
-                            <a class="nav-link" href="tambahGuru.php">
+                            <!-- <a class="nav-link" href="tambahGuru.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data guru
                             </a>
                             <a class="nav-link" href="tambahMurid.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data siswa
-                            </a>
+                            </a> -->
                             <a class="nav-link" href="dataguru.php">
                                 <div class="sb-nav-link-icon"></div> 
                                 Data guru

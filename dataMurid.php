@@ -1,6 +1,6 @@
 <?php
 include "../koneksi.php";
-$query = "SELECT * FROM tb_guru";
+$query = "SELECT * FROM tb_siswa";
 $ambil = $koneksi->query($query);
 // Menghitung jumlah baris hasil dari kueri SELECT
 $hitung = mysqli_num_rows($ambil);
@@ -13,7 +13,7 @@ $hitung = mysqli_num_rows($ambil);
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Tables - SB Admin</title>
+        <title>Data Siswa</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/button.css">
@@ -50,24 +50,24 @@ $hitung = mysqli_num_rows($ambil);
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading"><i class="fa-solid fa-house"></i>home</div>
-                            <a class="nav-link" href="dashboard.php">
+                            <a class="nav-link" href="dasboard.php">
                                 <div class="sb-nav-link-icon"></i></div>
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i>data</div>
-                            <!-- <a class="nav-link" href="tambahGuru.php">
+                            <a class="nav-link" href="dataguru.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data guru
                             </a>
-                            <a class="nav-link" href="tambahMurid.php">
+                            <a class="nav-link" href="dasboard.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data murid
-                            </a> -->
-                            <a class="nav-link" href="dataguru.php">
+                            </a>
+                            <a class="nav-link" href="tables.php">
                                 <div class="sb-nav-link-icon"></div> 
                                 data guru
                             </a>
-                            <a class="nav-link" href="dataMurid.php">
+                            <a class="nav-link" href="tabelmurid.php">
                                 <div class="sb-nav-link-icon"></div>
                                 data murid
                             </a>
@@ -89,7 +89,7 @@ $hitung = mysqli_num_rows($ambil);
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <a class="btn btn-primary" href="tambahGuru.php">Tambah Guru</a>
+                                <a class="btn btn-primary" href="tambahMurid.php">Tambah Murid</a>
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -99,44 +99,45 @@ $hitung = mysqli_num_rows($ambil);
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
-                                    <thead> 
+                                    <thead>
                                         <tr>
-                                            <th>NIP</th>
+                                            <th>NISN</th>
                                             <th>nama</th>
                                             <th>alamat</th>
-                                            <th>telpon</th>
-                                            <th>agama</th>
+                                            <th>Kelas</th>
+                                            <th>jurusan</th>
                                             <th>edit</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>NIP</th>
+                                            <th>NISN</th>
                                             <th>nama</th>
                                             <th>alamat</th>
-                                            <th>telpon</th>
-                                            <th>agama</th>
+                                            <th>kelas</th>
+                                            <th>jurusan</th>
                                             <th>edit</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php
-                                        while ($data = mysqli_fetch_array($ambil)) {
+                                            while ($data = mysqli_fetch_array($ambil)) {
+                                              
+                                            
                                         ?>
                                         <tr>
-                                            <td><?php echo $data['nip']; ?></td>
+                                            <td><?php echo $data['nisn']; ?></td>
                                             <td><?php echo $data['nama']; ?></td>
                                             <td><?php echo $data['alamat']; ?></td>
-                                            <td><?php echo $data['agama']; ?></td>
-                                            <td><?php echo $data['telpon']; ?></td>
+                                            <td><?php echo $data['kelas']; ?></td>
+                                            <td><?php echo $data['jurusan']; ?></td>
                                             <td>
-                                            <a class="btn btn-success" href="">Edit</a>
-                                            <button class="btn btn-danger" id="delete" data-id="id=<?php echo $data['nip']; ?>" href="">Delete</button>
-                                            
+                                            <button class="edit-btn">Edit</button>
+                                            <button class="delete-btn">Delete</button>
                                             </td>
                                         </tr>
                                         <?php
-                                        }
+                                            }
                                         ?>
                                     </tbody>
                                 </table>
@@ -158,32 +159,10 @@ $hitung = mysqli_num_rows($ambil);
                 </footer>
             </div>
         </div>
-        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="js/button.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.getElementById('delete').addEventListener('click', function() {
-        const id = this.getAttribute('data-id');
-        Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: "Data ini akan dihapus!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Kirim permintaan hapus ke server
-                window.location.href = 'function/hapus-guru.php?id=' + id; // Arahkan ke file PHP untuk menghapus data
-            }
-        });
-    });
-</script>
     </body>
 </html>

@@ -50,24 +50,24 @@ $hitung = mysqli_num_rows($ambil);
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading"><i class="fa-solid fa-house"></i>home</div>
-                            <a class="nav-link" href="dashboard.php">
+                            <a class="nav-link" href="dasboard.php">
                                 <div class="sb-nav-link-icon"></i></div>
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i>data</div>
-                            <!-- <a class="nav-link" href="tambahGuru.php">
+                            <a class="nav-link" href="dataguru.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data guru
                             </a>
-                            <a class="nav-link" href="tambahMurid.php">
+                            <a class="nav-link" href="dasboard.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data murid
-                            </a> -->
-                            <a class="nav-link" href="dataguru.php">
+                            </a>
+                            <a class="nav-link" href="tables.php">
                                 <div class="sb-nav-link-icon"></div> 
                                 data guru
                             </a>
-                            <a class="nav-link" href="dataMurid.php">
+                            <a class="nav-link" href="tabelmurid.php">
                                 <div class="sb-nav-link-icon"></div>
                                 data murid
                             </a>
@@ -130,9 +130,8 @@ $hitung = mysqli_num_rows($ambil);
                                             <td><?php echo $data['agama']; ?></td>
                                             <td><?php echo $data['telpon']; ?></td>
                                             <td>
-                                            <a class="btn btn-success" href="">Edit</a>
-                                            <button class="btn btn-danger" id="delete" data-id="id=<?php echo $data['nip']; ?>" href="">Delete</button>
-                                            
+                                            <button class="edit-btn">Edit</button>
+                                            <button class="delete-btn">Delete</button>
                                             </td>
                                         </tr>
                                         <?php
@@ -158,32 +157,10 @@ $hitung = mysqli_num_rows($ambil);
                 </footer>
             </div>
         </div>
-        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="js/button.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.getElementById('delete').addEventListener('click', function() {
-        const id = this.getAttribute('data-id');
-        Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: "Data ini akan dihapus!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Kirim permintaan hapus ke server
-                window.location.href = 'function/hapus-guru.php?id=' + id; // Arahkan ke file PHP untuk menghapus data
-            }
-        });
-    });
-</script>
     </body>
 </html>
