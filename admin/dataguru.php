@@ -12,7 +12,7 @@ $hitung = mysqli_num_rows($ambil);
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="author" content=""/>
         <title>Tables - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
@@ -130,7 +130,7 @@ $hitung = mysqli_num_rows($ambil);
                                             <td><?php echo $data['agama']; ?></td>
                                             <td><?php echo $data['telpon']; ?></td>
                                             <td>
-                                            <a class="btn btn-success" href="function/edit-guru.php?id=<?php echo $data['nip']; ?>">Edit</a>
+                                            <a class="btn btn-success" href="function/edit-guru.php?id=<?php echo $data['id_guru']; ?>">Edit</a>
                                             <button class="btn btn-danger" id="delete" data-id="id=<?php echo $data['nip']; ?>" href="">Delete</button>
                                             
                                             </td>

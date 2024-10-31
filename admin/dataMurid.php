@@ -132,7 +132,7 @@ $hitung = mysqli_num_rows($ambil);
                                             <td><?php echo $data['kelas']; ?></td>
                                             <td><?php echo $data['jurusan']; ?></td>
                                             <td>
-                                            <button class="edit-btn">Edit</button>
+                                            <a class="btn btn-success" href="function/edit-siswa.php?id=<?php echo $data['id_siswa']; ?>">Edit</a>
                                             <button class="btn btn-danger" id="delete" data-id="id=<?php echo $data['nisn']; ?>" href="">Delete</button>
                                             </td>
                                         </tr>

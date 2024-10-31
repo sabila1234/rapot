@@ -28,7 +28,7 @@ if ($ambil) {
              window.location.href = '../dataMurid.php';
          });
      </script>";
-      echo "<script>window.location.href = '../dataGuru.php'</script>";
+      echo "<script>window.location.href = '../dataMurid.php'</script>";
     # code...
 }
 ?>
