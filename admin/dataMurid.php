@@ -133,7 +133,7 @@ $hitung = mysqli_num_rows($ambil);
                                             <td><?php echo $data['jurusan']; ?></td>
                                             <td>
                                             <button class="edit-btn">Edit</button>
-                                            <a class="btn btn-danger" href="function/hapus-siswa.php?id=<?php echo $data['nisn']; ?>">Delete</a>
+                                            <button class="btn btn-danger" id="delete" data-id="id=<?php echo $data['nisn']; ?>" href="">Delete</button>
                                             </td>
                                         </tr>
                                         <?php
@@ -164,5 +164,26 @@ $hitung = mysqli_num_rows($ambil);
         <script src="js/button.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+    document.getElementById('delete').addEventListener('click', function() {
+        const id = this.getAttribute('data-id');
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Data ini akan dihapus!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Kirim permintaan hapus ke server
+                window.location.href = 'function/hapus-siswa.php?' + id; // Arahkan ke file PHP untuk menghapus data
+            }
+        });
+    });
+</script>
     </body>
 </html>

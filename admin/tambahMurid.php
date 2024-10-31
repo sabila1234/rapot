@@ -8,7 +8,7 @@ include "../koneksi.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Pengisian Data Murid</title>
     <link rel="stylesheet" href="../css/murid.css">
-    <script src="../js/murid.js" defer></script>
+    <!-- <script src="../js/murid.js" defer></script> -->
 </head>
 <body>
     <div class="container">

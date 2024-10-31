@@ -130,7 +130,7 @@ $hitung = mysqli_num_rows($ambil);
                                             <td><?php echo $data['agama']; ?></td>
                                             <td><?php echo $data['telpon']; ?></td>
                                             <td>
-                                            <a class="btn btn-success" href="">Edit</a>
+                                            <a class="btn btn-success" href="function/edit-guru.php?id=<?php echo $data['nip']; ?>">Edit</a>
                                             <button class="btn btn-danger" id="delete" data-id="id=<?php echo $data['nip']; ?>" href="">Delete</button>
                                             
                                             </td>
@@ -180,7 +180,7 @@ $hitung = mysqli_num_rows($ambil);
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan hapus ke server
-                window.location.href = 'function/hapus-guru.php?id=' + id; // Arahkan ke file PHP untuk menghapus data
+                window.location.href = 'function/hapus-guru.php?' + id; // Arahkan ke file PHP untuk menghapus data
             }
         });
     });
