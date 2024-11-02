@@ -1,5 +1,5 @@
 <?php
-include "../koneksi.php";
+include "koneksi.php";
 $query = "SELECT * FROM tb_siswa";
 $ambil = $koneksi->query($query);
 // Menghitung jumlah baris hasil dari kueri SELECT

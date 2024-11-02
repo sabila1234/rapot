@@ -1,6 +1,10 @@
 <?php 
 include "../koneksi.php";
-$query = ""
+
+$query = "SELECT * FROM tb_guru";
+$hubungkan = $koneksi->query($query);
+$qry = "SELECT * FROM tb_siswa";
+$sambung = $koneksi->query($qry);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +93,7 @@ $query = ""
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Jumlah Guru</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link text-center" href="dataguru.php"><?php echo mysqli_num_rows($hubungkan)?></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -98,7 +102,7 @@ $query = ""
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Jumlah Siswa</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <p class="small text-white stretched-link" href="#">View Details</p>
+                                    <a class="small text-white stretched-link text-center" href="dataMurid.php"><?php echo mysqli_num_rows($sambung)?></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

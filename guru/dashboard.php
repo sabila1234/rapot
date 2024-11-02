@@ -1,9 +1,10 @@
-<?php
-include "koneksi.php";
+<?php 
+include "../koneksi.php";
+
 $query = "SELECT * FROM tb_guru";
-$ambil = $koneksi->query($query);
-// Menghitung jumlah baris hasil dari kueri SELECT
-$hitung = mysqli_num_rows($ambil);
+$hubungkan = $koneksi->query($query);
+$qry = "SELECT * FROM tb_siswa";
+$sambung = $koneksi->query($qry);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,17 +14,16 @@ $hitung = mysqli_num_rows($ambil);
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Tables - SB Admin</title>
+        <title>Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="css/button.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="shortcut icon" href="assets/img/pplg.png" type="image/x-icon">
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.php">PPLG</a>
+            <a class="navbar-brand ps-3" href="index.php">Dashboard Guru</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -38,6 +38,8 @@ $hitung = mysqli_num_rows($ambil);
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="#!">Logout</a></li>
                     </ul>
@@ -55,98 +57,83 @@ $hitung = mysqli_num_rows($ambil);
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i>data</div>
-                            <a class="nav-link" href="dataguru.php">
+                            <!-- <a class="nav-link" href="tambahGuru.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data guru
                             </a>
-                            <a class="nav-link" href="dasboard.php">
+                            <a class="nav-link" href="tambahMurid.php">
                                 <div class="sb-nav-link-icon"></div>
-                                tambahkan data murid
-                            </a>
-                            <a class="nav-link" href="tables.php">
+                                tambahkan data siswa
+                            </a> -->
+                            <a class="nav-link" href="dataguru.php">
                                 <div class="sb-nav-link-icon"></div> 
-                                data guru
+                                Data guru
                             </a>
-                            <a class="nav-link" href="tabelmurid.php">
+                            <a class="nav-link" href="dataMurid.php">
                                 <div class="sb-nav-link-icon"></div>
-                                data murid
+                                Data siswa
                             </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        <?= 'admin' ?>
+                        Start Bootstrap
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">data guru</h1>
+                        <h1 class="mt-4">Halaman Utama</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">data guru</a></li>
-                            <li class="breadcrumb-item active">Data guru</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <a class="btn btn-primary" href="tambahGuru.php">Tambah Guru</a>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Jumlah Guru</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link text-center" href="dataguru.php"><?php echo mysqli_num_rows($hubungkan)?></a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Jumlah Siswa</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link text-center" href="dataMurid.php"><?php echo mysqli_num_rows($sambung)?></a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">data siswa yang lulus</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">sata siswa yang tidak lulus</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Data guru
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead> 
-                                        <tr>
-                                            <th>NIP</th>
-                                            <th>nama</th>
-                                            <th>alamat</th>
-                                            <th>telpon</th>
-                                            <th>agama</th>
-                                            <th>edit</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>NIP</th>
-                                            <th>nama</th>
-                                            <th>alamat</th>
-                                            <th>telpon</th>
-                                            <th>agama</th>
-                                            <th>edit</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php
-                                        while ($data = mysqli_fetch_array($ambil)) {
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $data['nip']; ?></td>
-                                            <td><?php echo $data['nama']; ?></td>
-                                            <td><?php echo $data['alamat']; ?></td>
-                                            <td><?php echo $data['agama']; ?></td>
-                                            <td><?php echo $data['telpon']; ?></td>
-                                            <td>
-                                            <button class="edit-btn">Edit</button>
-                                            <button class="delete-btn">Delete</button>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    
+                       
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website <?= date ('Y') ?></div>
+                            <div class="text-muted">Copyright &copy; PPLG <?= date('Y') ?></div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
@@ -159,7 +146,9 @@ $hitung = mysqli_num_rows($ambil);
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="js/button.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>

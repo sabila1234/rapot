@@ -1,6 +1,6 @@
 <?php
-include "koneksi.php";
-$query = "SELECT * FROM tb_guru";
+include "../koneksi.php";
+$query = "SELECT * FROM tb_siswa";
 $ambil = $koneksi->query($query);
 // Menghitung jumlah baris hasil dari kueri SELECT
 $hitung = mysqli_num_rows($ambil);
@@ -13,7 +13,7 @@ $hitung = mysqli_num_rows($ambil);
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Tables - SB Admin</title>
+        <title>Data Siswa</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/button.css">
@@ -48,26 +48,26 @@ $hitung = mysqli_num_rows($ambil);
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
+                    <div class="nav">
                             <div class="sb-sidenav-menu-heading"><i class="fa-solid fa-house"></i>home</div>
-                            <a class="nav-link" href="dasboard.php">
+                            <a class="nav-link" href="dashboard.php">
                                 <div class="sb-nav-link-icon"></i></div>
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading"><i class="fa-regular fa-user"></i>data</div>
-                            <a class="nav-link" href="dataguru.php">
+                            <!-- <a class="nav-link" href="tambahGuru.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data guru
                             </a>
-                            <a class="nav-link" href="dasboard.php">
+                            <a class="nav-link" href="tambahMurid.php">
                                 <div class="sb-nav-link-icon"></div>
                                 tambahkan data murid
-                            </a>
-                            <a class="nav-link" href="tables.php">
+                            </a> -->
+                            <a class="nav-link" href="dataguru.php">
                                 <div class="sb-nav-link-icon"></div> 
                                 data guru
                             </a>
-                            <a class="nav-link" href="tabelmurid.php">
+                            <a class="nav-link" href="dataMurid.php">
                                 <div class="sb-nav-link-icon"></div>
                                 data murid
                             </a>
@@ -82,14 +82,14 @@ $hitung = mysqli_num_rows($ambil);
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">data guru</h1>
+                        <h1 class="mt-4">Data Siswa</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">data guru</a></li>
-                            <li class="breadcrumb-item active">Data guru</li>
+                            <li class="breadcrumb-item"><a href="index.html">Data Guru</a></li>
+                            <li class="breadcrumb-item active">Data Guru</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <a class="btn btn-primary" href="tambahGuru.php">Tambah Guru</a>
+                                <a class="btn btn-primary" href="tambahMurid.php">Tambah Murid</a>
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -99,43 +99,46 @@ $hitung = mysqli_num_rows($ambil);
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
-                                    <thead> 
+                                    <thead>
                                         <tr>
-                                            <th>NIP</th>
+                                            <th>NISN</th>
                                             <th>nama</th>
                                             <th>alamat</th>
-                                            <th>telpon</th>
-                                            <th>agama</th>
+                                            <th>Kelas</th>
+                                            <th>jurusan</th>
                                             <th>edit</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>NIP</th>
+                                            <th>NISN</th>
                                             <th>nama</th>
                                             <th>alamat</th>
-                                            <th>telpon</th>
-                                            <th>agama</th>
+                                            <th>kelas</th>
+                                            <th>jurusan</th>
                                             <th>edit</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php
-                                        while ($data = mysqli_fetch_array($ambil)) {
+                                            while ($data = mysqli_fetch_array($ambil)) {
+                                              
+                                            
                                         ?>
                                         <tr>
-                                            <td><?php echo $data['nip']; ?></td>
+                                            <td><?php echo $data['nisn']; ?></td>
                                             <td><?php echo $data['nama']; ?></td>
                                             <td><?php echo $data['alamat']; ?></td>
-                                            <td><?php echo $data['agama']; ?></td>
-                                            <td><?php echo $data['telpon']; ?></td>
+                                            <td><?php echo $data['kelas']; ?></td>
+                                            <td><?php echo $data['jurusan']; ?></td>
                                             <td>
-                                            <button class="edit-btn">Edit</button>
-                                            <button class="delete-btn">Delete</button>
-                                            </td>
+                                            <a class="btn btn-success" href="function/edit-siswa.php?id=<?php echo $data['id_siswa']; ?>">Edit</a>
+                                            <a class="btn btn-success" href="datarapot.php?id=<?php echo $data['id_siswa']; ?>"><i class="bi bi-calendar2-plus"></i> Nilai</a>
+                                            <button class="btn btn-danger delete-button" data-nisn="<?php echo $data['nisn']; ?>">Delete</button>
+                                        </td>
                                         </tr>
                                         <?php
-                                        }
+                                            }
                                         ?>
                                     </tbody>
                                 </table>
@@ -162,5 +165,27 @@ $hitung = mysqli_num_rows($ambil);
         <script src="js/button.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+ document.querySelectorAll('.delete-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const nisn = this.getAttribute('data-nisn'); // Ganti 'data-id' dengan 'data-nisn'
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Data ini akan dihapus!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'function/hapus-siswa.php?nisn=' + nisn; // Ganti 'id' dengan 'nisn'
+            }
+        });
+    });
+});
+</script>
     </body>
 </html>

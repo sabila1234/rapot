@@ -133,8 +133,8 @@ $hitung = mysqli_num_rows($ambil);
                                             <td><?php echo $data['jurusan']; ?></td>
                                             <td>
                                             <a class="btn btn-success" href="function/edit-siswa.php?id=<?php echo $data['id_siswa']; ?>">Edit</a>
-                                            <button class="btn btn-danger" id="delete" data-id="id=<?php echo $data['nisn']; ?>" href="">Delete</button>
-                                            </td>
+                                            <button class="btn btn-danger delete-button" data-nisn="<?php echo $data['nisn']; ?>">Delete</button>
+                                        </td>
                                         </tr>
                                         <?php
                                             }
@@ -166,8 +166,9 @@ $hitung = mysqli_num_rows($ambil);
         <script src="js/datatables-simple-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-    document.getElementById('delete').addEventListener('click', function() {
-        const id = this.getAttribute('data-id');
+ document.querySelectorAll('.delete-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const nisn = this.getAttribute('data-nisn'); // Ganti 'data-id' dengan 'data-nisn'
         Swal.fire({
             title: 'Apakah Anda yakin?',
             text: "Data ini akan dihapus!",
@@ -179,11 +180,11 @@ $hitung = mysqli_num_rows($ambil);
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Kirim permintaan hapus ke server
-                window.location.href = 'function/hapus-siswa.php?' + id; // Arahkan ke file PHP untuk menghapus data
+                window.location.href = 'function/hapus-siswa.php?nisn=' + nisn; // Ganti 'id' dengan 'nisn'
             }
         });
     });
+});
 </script>
     </body>
 </html>
