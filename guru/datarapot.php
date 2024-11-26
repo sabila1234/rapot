@@ -1,11 +1,12 @@
 <?php
 include "../koneksi.php";
 $id = $_GET['id'];
+//query ambil data siswa berdasarkan id
 $sql = "SELECT * FROM tb_siswa WHERE id_siswa = $id";
 $ambil = $koneksi->query($sql);
 $pecah = $ambil->fetch_assoc();
 ?>
-<!DOCTYP
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +20,12 @@ $pecah = $ambil->fetch_assoc();
 <div class="container">
     <h1>Input Nilai Rapor</h1>
     
-    <form id="nilaiForm">
+    <form id="nilaiForm" method="POST">
         <table class="rapor-table">
             <tr>
                 <th>NISN</th>
                 <td colspan="3">
-                    <input type="text" id="nisn" placeholder="Masukkan NISN" value="<?php echo $pecah['nisn'] ?>">
+                    <input type="text" id="nisn" name="nisn" placeholder="Masukkan NISN" value="<?php echo $pecah['nisn'] ?>">
                 </td>
             </tr>
             <tr>
@@ -37,7 +38,7 @@ $pecah = $ambil->fetch_assoc();
                 <th>Jurusan</th>
                 <td><input type="text" id="jurusan" placeholder="Jurusan" value="<?php echo $pecah['jurusan']; ?>" readonly></td>
                 <th>Tahun Ajaran</th>
-                <td><input type="text" id="tahunAjaran" placeholder="2023/2024" required></td>
+                <td><input type="text" id="tahunAjaran" placeholder="2023/2024" ></td>
             </tr>
             <tr>
                 <th>Semester</th>
@@ -57,20 +58,20 @@ $pecah = $ambil->fetch_assoc();
                 <table class="rapor-table">
                     <tr>
                         <th>Mata Pelajaran</th>
-                        <td><input type="text" class="mapel" placeholder="Mata Pelajaran" required></td>
+                        <td><input type="text" name="mapel" class="mapel" placeholder="Mata Pelajaran" required></td>
                     </tr>
                     <tr>
                         <th>Nilai Kompetensi</th>
-                        <td><input type="number" class="nilaiKompetensi" placeholder="Nilai Kompetensi" required></td>
+                        <td><input type="number" name="nilaiKompetesi" class="nilaiKompetensi" placeholder="Nilai Kompetensi" required></td>
                         <th>Nilai Keterampilan</th>
-                        <td><input type="number" class="nilaiKeterampilan" placeholder="Nilai Keterampilan" required></td>
+                        <td><input type="number" name="nilaiKeterampilan" class="nilaiKeterampilan" placeholder="Nilai Keterampilan" required></td>
                     </tr>
                     <tr>
                         <th>KKM</th>
-                        <td><input type="number" class="kkm" placeholder="KKM" required></td>
+                        <td><input type="number" name="kkm" class="kkm" placeholder="KKM" required></td>
                         <th>Keterangan</th>
                         <td>
-                            <textarea class="keterangan" placeholder="Keterangan (Opsional)"></textarea>
+                            <textarea class="keterangan" name="keterangan" placeholder="Keterangan (Opsional)"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -79,7 +80,7 @@ $pecah = $ambil->fetch_assoc();
 
         <button type="button" id="addMapelBtn">Tambah Mata Pelajaran</button>
 
-        <button type="submit">Submit</button>
+        <button type="submit" name="tambah">Submit</button>
         <div id="averageResult" style="margin-top: 20px; display: none;"></div>
     </form>
 </div>
@@ -88,6 +89,36 @@ $pecah = $ambil->fetch_assoc();
     <p>© 2024 Sekolah XYZ. All rights reserved.</p>
 </footer>
 
-<script src="../js/datarapot.js" defer></script>
+<!-- <script src="../js/datarapot.js" defer></script> -->
 </body>
 </html>
+
+
+<?php 
+if (isset($_POST['tambah'])) {
+    echo "test";
+    $nisn=htmlspecialchars($_POST['nisn']);
+    $mapel=htmlspecialchars($_POST['mapel']);
+    $nilaiKompetensi=htmlspecialchars($_POST['nilaiKompetesi']);
+    $nilaiketerampilan=htmlspecialchars($_POST['nilaiKeterampilan']);
+    $kkm=htmlspecialchars($_POST['kkm']);
+    $keterangan=htmlspecialchars($_POST['keterangan']);
+   
+
+    $sql1 = "INSERT INTO tb_nilai_ujian 
+    (nisn, pelajaran, nilai_kompetensi, nilai_keterampilan, kkm, keterangan)
+    VALUES ('$nisn', '$mapel', '$nilaiKompetensi', '$nilaiketerampilan', '$kkm', '$keterangan')";
+    
+    $tambah = $koneksi->query($sql1);
+    echo "<pre>";
+    print_r($_POST); // Ini untuk menampilkan data yang dikirim
+    echo "</pre>";
+    
+    if ($tambah) {
+        echo"nerhaisl";
+    } else {
+        echo"gagal";
+    }
+}
+
+?>
